@@ -872,8 +872,8 @@ async function callAIStreaming(q, request_type, onChunkReceived) {
 const intervalId = setInterval(a, 5000);
 
 // Define the function to be called periodically
-function a() {
-    Word.run(function (context) {
+async function a() {
+    await Word.run(function (context) {
         // Get the current selection
         var selection = context.document.getSelection();
         selection.load("text");

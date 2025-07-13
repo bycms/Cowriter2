@@ -6,7 +6,7 @@ const MAX_SUGGESTIONS = 4; // Maximum suggestions to show
 let SUGGESTION_HISTORY = []; // Track previous suggestions
 
 // Initialize event handlers
-async function initializeSuggestions() {
+Office.onReady(async function () {
     await Word.run(async (context) => {
         context.document.onParagraphChanged.add(sug);
         await context.sync();
@@ -14,7 +14,7 @@ async function initializeSuggestions() {
     }).catch(error => {
         console.error("Error initializing suggestions:", error);
     });
-}
+});
 
 // Trigger suggestion generation
 async function sug(event) {
@@ -240,6 +240,3 @@ async function applySuggestion(suggestion) {
         suggestionDiv.innerHTML = '<p>Keep writing to see suggestions. The AI will remember previous suggestions.</p>';
     }
 }
-
-// Initialize the suggestion system
-initializeSuggestions();

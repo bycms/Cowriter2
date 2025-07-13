@@ -869,8 +869,6 @@ async function callAIStreaming(q, request_type, onChunkReceived) {
 
 })();
 
-const intervalId = setInterval(a, 5000);
-
 // Define the function to be called periodically
 async function a() {
     await Word.run(function (context) {
@@ -894,6 +892,10 @@ async function a() {
         console.log("Error in function a(): " + JSON.stringify(error));
     });
 }
+
+Office.onReady(function () {
+    const intervalId = setInterval(a, 5000);
+});
 
 // ================= TOOL FUNCTION: CONVERT STYLED MARKDOWN TO HTML =================
 function md_paragraph(s) {
